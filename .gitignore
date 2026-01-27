@@ -1,0 +1,8 @@
+Home/
+node_modules/
+.next/
+.env.local
+.DS_Store
+*.log
+*.mp4
+web/public/videos/

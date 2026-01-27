@@ -1,0 +1,50 @@
+.aboutSection {
+  padding: 6rem 2rem;
+  background-color: white;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  color: var(--primary);
+  margin-bottom: 2rem;
+}
+
+.text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 3rem;
+}
+
+.highlight {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.logo {
+  margin: 0 auto 2rem auto;
+  opacity: 0.8;
+}
+
+.linkButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.linkButton:hover {
+  background-color: var(--primary);
+  color: white;
+}

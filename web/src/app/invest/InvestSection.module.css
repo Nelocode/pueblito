@@ -1,0 +1,289 @@
+.contentSection {
+    background-color: #f4f4f4;
+    padding-bottom: 4rem;
+}
+
+.introMessage {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--primary);
+    padding: 6rem 2rem 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.2;
+}
+
+.apartmentsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.splitSection {
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+}
+
+@media (min-width: 900px) {
+    .splitSection {
+        flex-direction: row;
+    }
+
+    /* Even items (2nd, 4th...) reverse order */
+    .splitSection:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+}
+
+.textContent {
+    flex: 1;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+/* Specific Color Modifiers */
+.bgBurgundy {
+    background-color: #7A2834;
+}
+
+.bgNavy {
+    background-color: #2E3A8C;
+}
+
+.bgOlive {
+    background-color: #556B2F;
+}
+
+.imageContent {
+    flex: 1;
+    position: relative;
+    min-height: 400px;
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 1rem;
+    line-height: 1.2;
+}
+
+@media (max-width: 1100px) {
+    .title {
+        font-size: 2.5rem;
+    }
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.statItem {
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+    padding-left: 1rem;
+}
+
+.statValue {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: #F4F1EA;
+}
+
+.statLabel {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.description {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.featuresList {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2.5rem;
+}
+
+.featuresList li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    opacity: 0.9;
+}
+
+.ctaButton {
+    align-self: flex-start;
+    padding: 1rem 2.5rem;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.ctaButton:hover {
+    background-color: white;
+    color: #333;
+}
+
+/* --- PAYMENT PLAN NEW DESIGN (FIXED) --- */
+.paymentSection {
+    background-color: white;
+    padding: 6rem 2rem;
+    position: relative;
+    text-align: center;
+}
+
+.paymentTitle {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.paymentDesc {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.paymentContentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+@media (min-width: 1000px) {
+    .paymentContentWrapper {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.decoImageBox {
+    flex: 0 0 400px;
+    position: relative;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.paymentGrid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.paymentCard {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.paymentCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--secondary);
+}
+
+.stepNumber {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.stepName {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stepValue {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-top: auto;
+}
+
+.deliveryInfo {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+    border-radius: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    display: inline-block;
+    min-width: 300px;
+}
+
+.deliveryInfo h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.deliveryDate {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}

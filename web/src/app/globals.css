@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+@font-face {
+  font-family: 'Breathing';
+  src: url('/fonts/Breathing.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Premium Caribbean Palette */
+  --primary: #003B5C; /* Deep Ocean Blue - Authority & Depth */
+  --secondary: #D4AF37; /* Aged Gold - Luxury */
+  --accent: #C06C5D; /* Terracotta - Warmth & Roofs */
+  --background: #F4F1EA; /* Warm Sand - No more stark white */
+  --surface: #FFFFFF; /* Clean areas */
+  --foreground: #2C3E50; /* Dark Slate - Softer Text */
+  
+  --glass-bg: rgba(244, 241, 234, 0.7); /* Warm Glass */
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-blur: 16px; /* Deeper blur for premium feel */
+
+  --font-heading: 'Breathing', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: var(--primary);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background-color 0.2s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  background-color: var(--secondary);
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased; /* Crisp text */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400; /* Breathing looks better at normal weight */
+  line-height: 1.1;
+  color: var(--primary);
+}
+
+/* Global Header Redesign */
+.page-header {
+  padding: 12rem 2rem 5rem 2rem;
+  background-color: var(--background); /* Light Sand */
+  color: var(--primary); /* Dark Blue Text */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* Subtle gradient for depth */
+  background: linear-gradient(to bottom, #d4f1f9 0%, var(--background) 100%);
+  /* Soft transition to content */
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  padding-bottom: 8rem; /* Extra padding for the fade */
+}
+
+.page-header h1 {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-weight: 400;
+  position: relative;
+  z-index: 10;
+}
+
+.page-header p {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 400;
+  position: relative;
+  z-index: 10;
+}
