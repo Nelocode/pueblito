@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 
@@ -25,13 +25,24 @@ export default function LocationAccordion() {
         }
     ];
 
+    const containerStyle = {
+        display: 'flex',
+        width: '100%',
+        maxWidth: '1200px',
+        height: '600px', // Fixed height to prevent collapse
+        margin: '0 auto',
+        gap: '1rem',
+        borderRadius: '20px',
+        overflow: 'hidden',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        position: 'relative',
+        backgroundColor: '#fff' // Fallback
+    };
+
     return (
-        <div className="w-full max-w-[1200px] h-[600px] mx-auto flex gap-4 overflow-hidden rounded-[20px] shadow-2xl relative">
+        <div style={containerStyle}>
             {locations.map((location) => {
                 const isActive = activeId === location.id;
-                // If no item is active (hovered), both share space equally. 
-                // If one is active, it takes more space.
-                // We can handle this with flex-grow or width.
 
                 return (
                     <motion.div
@@ -39,37 +50,77 @@ export default function LocationAccordion() {
                         layout
                         onMouseEnter={() => setActiveId(location.id)}
                         onMouseLeave={() => setActiveId(null)}
-                        onClick={() => setActiveId(activeId === location.id ? null : location.id)} // Mobile tap support
+                        onClick={() => setActiveId(activeId === location.id ? null : location.id)}
                         initial={{ flex: 1 }}
                         animate={{
                             flex: activeId ? (isActive ? 3 : 1) : 1,
                             filter: activeId && !isActive ? "brightness(0.7)" : "brightness(1)"
                         }}
                         transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="relative h-full cursor-pointer overflow-hidden rounded-[20px] bg-gray-100 group"
+                        style={{
+                            position: 'relative',
+                            height: '100%',
+                            cursor: 'pointer',
+                            borderRadius: '20px',
+                            overflow: 'hidden',
+                            isolation: 'isolate' // Helps with Safari/stacking contexts
+                        }}
                     >
                         <Image
                             src={location.image}
                             alt={location.alt}
                             fill
-                            className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-110"
+                            style={{
+                                objectFit: 'cover',
+                                objectPosition: 'center',
+                            }}
                         />
 
                         {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                        <div
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
+                                pointerEvents: 'none'
+                            }}
+                        />
 
                         {/* Content */}
-                        <div className="absolute bottom-0 left-0 p-8 w-full">
+                        <div style={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            width: '100%',
+                            padding: '2rem'
+                        }}>
                             <motion.div
                                 initial={false}
                                 animate={{ y: 0 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className={`p-2 rounded-full ${isActive ? "bg-[#7CBD9F] text-white" : "bg-white/20 text-white backdrop-blur-sm"} transition-colors duration-300`}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                                    <div style={{
+                                        padding: '0.5rem',
+                                        borderRadius: '50%',
+                                        backgroundColor: isActive ? '#7CBD9F' : 'rgba(255,255,255,0.2)',
+                                        color: 'white',
+                                        backdropFilter: 'blur(4px)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        transition: 'background-color 0.3s ease'
+                                    }}>
                                         <MapPin size={24} />
                                     </div>
-                                    <h3 className="text-3xl font-bold text-white font-heading leading-none">
+                                    <h3 style={{
+                                        fontSize: '2rem',
+                                        fontWeight: '700',
+                                        color: 'white',
+                                        fontFamily: 'var(--font-heading, serif)',
+                                        lineHeight: 1,
+                                        margin: 0
+                                    }}>
                                         {location.title}
                                     </h3>
                                 </div>
@@ -78,9 +129,16 @@ export default function LocationAccordion() {
                                     initial={{ opacity: 0, height: 0 }}
                                     animate={{
                                         opacity: isActive ? 1 : 0.7,
-                                        height: "auto"
+                                        height: isActive ? "auto" : 0
                                     }}
-                                    className="text-white/90 text-lg font-light pl-[3.25rem]"
+                                    style={{
+                                        color: 'rgba(255,255,255,0.9)',
+                                        fontSize: '1.1rem',
+                                        fontWeight: '300',
+                                        paddingLeft: '3.5rem', // Align with text
+                                        margin: 0,
+                                        overflow: 'hidden'
+                                    }}
                                 >
                                     {location.description}
                                 </motion.p>
