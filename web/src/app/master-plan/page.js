@@ -1,13 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Image from 'next/image';
-import PageHeader from "@/components/PageHeader";
-
-export const metadata = {
-  title: "Master Plan | Pueblito Caribeño",
-  description: "Explora la distribución de nuestro proyecto y su ubicación en Vistacana.",
-};
-
 "use client";
 
 import Navbar from "@/components/Navbar";
