@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
+import styles from './LocationAccordion.module.css';
 
 export default function LocationAccordion() {
     const [activeId, setActiveId] = useState(null);
@@ -25,22 +26,8 @@ export default function LocationAccordion() {
         }
     ];
 
-    const containerStyle = {
-        display: 'flex',
-        width: '100%',
-        maxWidth: '1200px',
-        height: '600px', // Fixed height to prevent collapse
-        margin: '0 auto',
-        gap: '1rem',
-        borderRadius: '20px',
-        overflow: 'hidden',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        position: 'relative',
-        backgroundColor: '#fff' // Fallback
-    };
-
     return (
-        <div style={containerStyle}>
+        <div className={styles.container}>
             {locations.map((location) => {
                 const isActive = activeId === location.id;
 
@@ -57,70 +44,28 @@ export default function LocationAccordion() {
                             filter: activeId && !isActive ? "brightness(0.7)" : "brightness(1)"
                         }}
                         transition={{ duration: 0.5, ease: "easeInOut" }}
-                        style={{
-                            position: 'relative',
-                            height: '100%',
-                            cursor: 'pointer',
-                            borderRadius: '20px',
-                            overflow: 'hidden',
-                            isolation: 'isolate' // Helps with Safari/stacking contexts
-                        }}
+                        className={styles.panel}
                     >
                         <Image
                             src={location.image}
                             alt={location.alt}
                             fill
-                            style={{
-                                objectFit: 'cover',
-                                objectPosition: 'center',
-                            }}
+                            className={styles.image}
                         />
 
-                        {/* Gradient Overlay */}
-                        <div
-                            style={{
-                                position: 'absolute',
-                                inset: 0,
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
-                                pointerEvents: 'none'
-                            }}
-                        />
+                        <div className={styles.overlay} />
 
-                        {/* Content */}
-                        <div style={{
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            width: '100%',
-                            padding: '2rem'
-                        }}>
+                        <div className={styles.contentWrapper}>
                             <motion.div
                                 initial={false}
                                 animate={{ y: 0 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                                    <div style={{
-                                        padding: '0.5rem',
-                                        borderRadius: '50%',
-                                        backgroundColor: isActive ? '#7CBD9F' : 'rgba(255,255,255,0.2)',
-                                        color: 'white',
-                                        backdropFilter: 'blur(4px)',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        transition: 'background-color 0.3s ease'
-                                    }}>
+                                <div className={styles.header}>
+                                    <div className={`${styles.iconWrapper} ${isActive ? styles.iconWrapperActive : ''}`}>
                                         <MapPin size={24} />
                                     </div>
-                                    <h3 style={{
-                                        fontSize: '2rem',
-                                        fontWeight: '700',
-                                        color: 'white',
-                                        fontFamily: 'var(--font-heading, serif)',
-                                        lineHeight: 1,
-                                        margin: 0
-                                    }}>
+                                    <h3 className={styles.title}>
                                         {location.title}
                                     </h3>
                                 </div>
@@ -131,14 +76,7 @@ export default function LocationAccordion() {
                                         opacity: isActive ? 1 : 0.7,
                                         height: isActive ? "auto" : 0
                                     }}
-                                    style={{
-                                        color: 'rgba(255,255,255,0.9)',
-                                        fontSize: '1.1rem',
-                                        fontWeight: '300',
-                                        paddingLeft: '3.5rem', // Align with text
-                                        margin: 0,
-                                        overflow: 'hidden'
-                                    }}
+                                    className={styles.description}
                                 >
                                     {location.description}
                                 </motion.p>
