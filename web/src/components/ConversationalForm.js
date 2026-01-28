@@ -42,7 +42,7 @@ const questions = [
     },
     {
         id: 'interest',
-        type: 'cselect', // Custom select
+        type: 'cselect',
         question: '¿Qué estás buscando en Pueblito Caribeño?',
         options: [
             "Compra por inversión",
@@ -86,17 +86,14 @@ export default function ConversationalForm() {
 
     useEffect(() => {
         if (questions[step].type === 'text' || questions[step].type === 'email' || questions[step].type === 'tel') {
-            // Focus input on step change
             setTimeout(() => inputRef.current?.focus(), 500);
         }
-        // Reset input value for new step if it's text-based
         const existingValue = formData[questions[step].id];
         setInputValue(existingValue || "");
         setError("");
     }, [step]);
 
     const handleNext = () => {
-        // Basic validation
         const currentQ = questions[step];
 
         if (currentQ.type !== 'checkbox' && !inputValue && currentQ.type !== 'cselect') {
@@ -114,10 +111,8 @@ export default function ConversationalForm() {
             return;
         }
 
-        // Save Data
         setFormData(prev => ({ ...prev, [currentQ.id]: inputValue }));
 
-        // Move next or finish
         if (step < questions.length - 1) {
             setStep(step + 1);
         } else {
@@ -127,8 +122,6 @@ export default function ConversationalForm() {
 
     const handleSelectOption = (option) => {
         setInputValue(option);
-        // Auto advance for single select? 
-        // Let's create a slight delay for better UX
         setFormData(prev => ({ ...prev, [questions[step].id]: option }));
         setTimeout(() => {
             if (step < questions.length - 1) {
@@ -140,7 +133,6 @@ export default function ConversationalForm() {
     const handleSubmit = async () => {
         setIsCompleted(true);
         console.log("Form Data:", formData);
-        // Here we would typically send to an API
     };
 
     const handleKeyDown = (e) => {
@@ -154,13 +146,31 @@ export default function ConversationalForm() {
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="w-full max-w-lg mx-auto bg-white p-12 rounded-[20px] shadow-xl text-center"
+                style={{
+                    width: '100%',
+                    maxWidth: '500px',
+                    margin: '0 auto',
+                    backgroundColor: 'white',
+                    padding: '3rem',
+                    borderRadius: '20px',
+                    boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
+                    textAlign: 'center'
+                }}
             >
-                <div className="w-20 h-20 bg-[#7CBD9F] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div style={{
+                    width: '80px',
+                    height: '80px',
+                    backgroundColor: '#7CBD9F',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 1.5rem auto'
+                }}>
                     <Check size={40} color="white" />
                 </div>
-                <h2 className="text-3xl font-heading text-[#003B5C] mb-4">¡Gracias!</h2>
-                <p className="text-gray-600 text-lg">
+                <h2 style={{ fontSize: '2rem', color: '#003B5C', marginBottom: '1rem', fontFamily: 'var(--font-heading)' }}>¡Gracias!</h2>
+                <p style={{ color: '#666', fontSize: '1.1rem' }}>
                     Hemos recibido tus datos correctamente. Uno de nuestros asesores se pondrá en contacto contigo muy pronto.
                 </p>
             </motion.div>
@@ -170,12 +180,31 @@ export default function ConversationalForm() {
     const currentQ = questions[step];
 
     return (
-        <div className="w-full max-w-2xl mx-auto min-h-[400px] flex flex-col justify-center">
+        <div style={{
+            width: '100%',
+            maxWidth: '700px',
+            margin: '0 auto',
+            minHeight: '500px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            position: 'relative'
+        }}>
 
             {/* Progress Bar */}
-            <div className="w-full h-2 bg-gray-200 rounded-full mb-12 overflow-hidden">
+            <div style={{
+                width: '100%',
+                height: '8px',
+                backgroundColor: '#e0e0e0',
+                borderRadius: '4px',
+                marginBottom: '3rem',
+                overflow: 'hidden'
+            }}>
                 <motion.div
-                    className="h-full bg-[#7CBD9F]"
+                    style={{
+                        height: '100%',
+                        backgroundColor: '#7CBD9F'
+                    }}
                     initial={{ width: 0 }}
                     animate={{ width: `${((step + 1) / questions.length) * 100}%` }}
                     transition={{ duration: 0.5 }}
@@ -189,14 +218,21 @@ export default function ConversationalForm() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="flex flex-col gap-6"
+                    style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-heading text-[#003B5C] leading-tight">
+                    {/* Question Title - Using font-body for readability, bold for emphasis */}
+                    <h2 style={{
+                        fontSize: '2rem',
+                        fontWeight: '600',
+                        color: '#003B5C',
+                        lineHeight: '1.3',
+                        fontFamily: 'var(--font-body, sans-serif)'
+                    }}>
                         {currentQ.question}
                     </h2>
 
                     {/* Inputs */}
-                    <div className="w-full">
+                    <div style={{ width: '100%' }}>
                         {(currentQ.type === 'text' || currentQ.type === 'email' || currentQ.type === 'tel') && (
                             <input
                                 ref={inputRef}
@@ -208,22 +244,55 @@ export default function ConversationalForm() {
                                 }}
                                 onKeyDown={handleKeyDown}
                                 placeholder={currentQ.placeholder}
-                                className="w-full bg-transparent border-b-2 border-gray-300 py-4 text-2xl text-gray-700 placeholder-gray-300 focus:outline-none focus:border-[#7CBD9F] transition-colors font-body"
+                                style={{
+                                    width: '100%',
+                                    background: 'transparent',
+                                    border: 'none',
+                                    borderBottom: '2px solid #ccc',
+                                    padding: '1rem 0',
+                                    fontSize: '1.5rem',
+                                    color: '#333',
+                                    outline: 'none',
+                                    fontFamily: 'var(--font-body, sans-serif)',
+                                    transition: 'border-color 0.3s'
+                                }}
+                                onFocus={(e) => e.target.style.borderBottomColor = '#7CBD9F'}
+                                onBlur={(e) => e.target.style.borderBottomColor = '#ccc'}
                             />
                         )}
 
                         {currentQ.type === 'cselect' && (
-                            <div className="flex flex-col gap-3 mt-4">
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 {currentQ.options.map((opt, idx) => (
                                     <button
                                         key={idx}
                                         onClick={() => handleSelectOption(opt)}
-                                        className={`text-left p-4 rounded-xl border-2 transition-all text-lg font-medium
-                      ${inputValue === opt
-                                                ? 'border-[#7CBD9F] bg-[#7CBD9F]/10 text-[#003B5C]'
-                                                : 'border-gray-200 hover:border-[#7CBD9F]/50 text-gray-600'
+                                        className="hover-scale" // If class exists, or use inline
+                                        style={{
+                                            textAlign: 'left',
+                                            padding: '1.2rem 1.5rem',
+                                            borderRadius: '12px',
+                                            border: inputValue === opt ? '2px solid #7CBD9F' : '1px solid #ddd',
+                                            backgroundColor: inputValue === opt ? 'rgba(124, 189, 159, 0.1)' : 'white',
+                                            color: inputValue === opt ? '#003B5C' : '#555',
+                                            fontSize: '1.1rem',
+                                            fontWeight: '500',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.2s ease',
+                                            boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            if (inputValue !== opt) {
+                                                e.target.style.borderColor = '#7CBD9F';
+                                                e.target.style.transform = 'translateY(-2px)';
                                             }
-                    `}
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            if (inputValue !== opt) {
+                                                e.target.style.borderColor = '#ddd';
+                                                e.target.style.transform = 'translateY(0)';
+                                            }
+                                        }}
                                     >
                                         {opt}
                                     </button>
@@ -232,23 +301,31 @@ export default function ConversationalForm() {
                         )}
 
                         {currentQ.type === 'checkbox' && (
-                            <label className="flex items-start gap-4 mt-4 cursor-pointer group">
-                                <div className={`
-                    w-6 h-6 rounded border-2 flex items-center justify-center shrink-0 mt-1 transition-colors
-                    ${inputValue ? 'bg-[#7CBD9F] border-[#7CBD9F]' : 'border-gray-300 group-hover:border-[#7CBD9F]'}
-                 `}>
+                            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginTop: '1rem', cursor: 'pointer' }}>
+                                <div style={{
+                                    width: '24px',
+                                    height: '24px',
+                                    borderRadius: '4px',
+                                    border: inputValue ? '2px solid #7CBD9F' : '2px solid #ccc',
+                                    backgroundColor: inputValue ? '#7CBD9F' : 'transparent',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0,
+                                    transition: 'all 0.2s'
+                                }}>
                                     {inputValue && <Check size={16} color="white" />}
                                 </div>
                                 <input
                                     type="checkbox"
-                                    className="hidden"
+                                    style={{ display: 'none' }}
                                     checked={!!inputValue}
                                     onChange={(e) => {
                                         setInputValue(e.target.checked);
                                         setError("");
                                     }}
                                 />
-                                <span className="text-lg text-gray-600 leading-relaxed">{currentQ.text}</span>
+                                <span style={{ fontSize: '1rem', color: '#666', lineHeight: '1.5' }}>{currentQ.text}</span>
                             </label>
                         )}
 
@@ -256,7 +333,7 @@ export default function ConversationalForm() {
                             <motion.p
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-red-500 mt-3 text-sm font-medium"
+                                style={{ color: '#D64045', marginTop: '1rem', fontSize: '0.9rem', fontWeight: '500' }}
                             >
                                 {error}
                             </motion.p>
@@ -265,28 +342,41 @@ export default function ConversationalForm() {
 
                     {/* Navigation */}
                     {currentQ.type !== 'cselect' && (
-                        <div className="mt-8">
+                        <div style={{ marginTop: '2rem' }}>
                             <button
                                 onClick={handleNext}
-                                className="
-                   inline-flex items-center gap-2 
-                   bg-[#003B5C] text-white px-8 py-4 rounded-full 
-                   text-xl font-bold hover:bg-[#D4AF37] transition-colors
-                   shadow-lg
-                "
+                                style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.8rem',
+                                    backgroundColor: '#003B5C',
+                                    color: 'white',
+                                    padding: '1rem 2.5rem',
+                                    borderRadius: '50px',
+                                    fontSize: '1.1rem',
+                                    fontWeight: '700',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    boxShadow: '0 10px 20px rgba(0, 59, 92, 0.2)',
+                                    transition: 'transform 0.2s, background-color 0.2s'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.transform = 'scale(1.05)';
+                                    e.target.style.backgroundColor = '#002a42';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.transform = 'scale(1)';
+                                    e.target.style.backgroundColor = '#003B5C';
+                                }}
                             >
                                 {currentQ.buttonText}
                                 <ArrowRight size={20} />
                             </button>
 
-                            <p className="text-gray-400 text-sm mt-4">
+                            <p style={{ color: '#999', fontSize: '0.9rem', marginTop: '1.5rem' }}>
                                 Presiona <strong>Enter ↵</strong> para continuar
                             </p>
                         </div>
-                    )}
-
-                    {currentQ.type === 'cselect' && (
-                        <div className="h-4"></div> // Spacer
                     )}
 
                 </motion.div>
