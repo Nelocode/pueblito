@@ -23,6 +23,13 @@ export default function LocationAccordion() {
             image: "/images/mapa_vistacana.png",
             alt: "Mapa Vistacana",
             description: "En el corazón de la comunidad"
+        },
+        {
+            id: "master-plan",
+            title: "Master Plan",
+            image: "/images/maps/planta_localizacion.png",
+            alt: "Master Plan Pueblito Caribeño",
+            description: "Distribución general del proyecto"
         }
     ];
 

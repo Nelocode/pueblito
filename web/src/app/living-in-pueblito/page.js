@@ -122,8 +122,8 @@ export default function LivingPage() {
 
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             style={{ textAlign: 'left', flex: '0 0 auto' }}
           >
             <div style={{ position: 'relative', lineHeight: 0.8 }}>
@@ -145,9 +145,8 @@ export default function LivingPage() {
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             style={{ fontSize: '1.05rem', lineHeight: '1.9', color: '#555', flex: '1', minWidth: '300px', maxWidth: '600px' }}
           >
             <p style={{ marginBottom: '1.5rem' }}>
@@ -265,7 +264,7 @@ export default function LivingPage() {
                 <motion.div
                   initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.8 }}
                   style={{
                     order: isEven ? 1 : 2,
