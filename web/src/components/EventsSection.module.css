@@ -116,6 +116,17 @@
   .categoryList {
     justify-content: center;
   }
+
+  .title {
+    font-size: 2.5rem;
+    /* Reduced from 3.5rem */
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
 }
 
 /* --- GRID --- */
