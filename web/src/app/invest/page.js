@@ -17,8 +17,18 @@ const investmentOptions = [
     area: "119 m²",
     rooms: "2+",
     baths: "2.5",
-    // Correct Updated Image for Level 1
-    images: ["/images/apto_nivel_1_new.jpg"],
+    images: [
+      "/images/apartments/APARTAMENTO-TIPICO-1.png",
+      "/images/apartments/APARTAMENTO-TIPICO-2.png",
+      "/images/apartments/APARTAMENTO-TIPICO-3.png",
+      "/images/apartments/APARTAMENTO-TIPICO-4.png",
+      "/images/apartments/APARTAMENTO-TIPICO-5.png",
+      "/images/apartments/APARTAMENTO-TIPICO-6.png",
+      "/images/apartments/APARTAMENTO-TIPICO-7.png",
+      "/images/apartments/APARTAMENTO-TIPICO-8.png",
+      "/images/apartments/APARTAMENTO-TIPICO-9.png",
+      "/images/apartments/APARTAMENTO-TIPICO-10.png"
+    ],
     colorClass: styles.bgBurgundy
   },
   {
@@ -26,8 +36,17 @@ const investmentOptions = [
     area: "106 – 114 m²",
     rooms: "2 + Salón + Rooftop",
     baths: "2.5",
-    // Correct Updated Image for Level 2
-    images: ["/images/apto_nivel_2_new.jpg"],
+    images: [
+      "/images/apartments/APARTAMENTO-2ND-1.png",
+      "/images/apartments/APARTAMENTO-2ND-2.png",
+      "/images/apartments/APARTAMENTO-2ND-3.png",
+      "/images/apartments/APARTAMENTO-2ND-4.png",
+      "/images/apartments/APARTAMENTO-2ND-5.png",
+      "/images/apartments/APARTAMENTO-2ND-6.png",
+      "/images/apartments/APARTAMENTO-2ND-7.png",
+      "/images/apartments/APARTAMENTO-2ND-8.png",
+      "/images/apartments/APARTAMENTO-2ND-9.png"
+    ],
     colorClass: styles.bgNavy
   },
   {
@@ -35,8 +54,20 @@ const investmentOptions = [
     area: "63 – 68 m²",
     rooms: "1 + Salón + Rooftop",
     baths: "1",
-    // Correct Updated Image for Plaza Colon
-    images: ["/images/apto_plaza_colon_rooftop.jpg"],
+    images: [
+      "/images/apartments/APARTAMENTO-PLAZA-1.png",
+      "/images/apartments/APARTAMENTO-PLAZA-2.png",
+      "/images/apartments/APARTAMENTO-PLAZA-3.png",
+      "/images/apartments/APARTAMENTO-PLAZA-4.png",
+      "/images/apartments/APARTAMENTO-PLAZA-5.png",
+      "/images/apartments/APARTAMENTO-PLAZA-6.png",
+      "/images/apartments/APARTAMENTO-PLAZA-7.png",
+      "/images/apartments/APARTAMENTO-PLAZA-8.png",
+      "/images/apartments/APARTAMENTO-PLAZA-9.png",
+      "/images/apartments/APARTAMENTO-PLAZA-10.png",
+      "/images/apartments/APARTAMENTO-PLAZA-11.png",
+      "/images/apartments/APARTAMENTO-PLAZA-12.png"
+    ],
     colorClass: styles.bgOlive
   }
 ];
@@ -141,4 +172,4 @@ export default function InvestPage() {
       <Footer />
     </main>
   );
-}
+                                 }
