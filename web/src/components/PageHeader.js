@@ -16,6 +16,7 @@ const PageHeader = ({ title, subtitle, bgImage }) => {
                fill 
                style={{ objectFit: 'cover' }}
                priority
+               sizes="100vw"
              />
           </div>
           {/* Overlay for contrast */}

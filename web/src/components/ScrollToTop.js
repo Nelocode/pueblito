@@ -39,7 +39,7 @@ const ScrollToTop = () => {
           whileTap={{ scale: 0.9 }}
           style={{
             position: 'fixed',
-            bottom: '2cm',
+            bottom: '2rem',
             right: '7.5rem',
             backgroundColor: '#D4AF37',
             color: 'white',
